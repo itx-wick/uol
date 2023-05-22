@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "975075443034",
+    "project_id": "uol-38f08",
+    "storage_bucket": "uol-38f08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975075443034:android:fe883caf1c33cd7a0cb363",
+        "android_client_info": {
+          "package_name": "com.first4connect.uol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "975075443034-61d72bkr7vq8hverim2pr80cskhq2ecq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlePdhyUmj_w_g4YKIuW5mgTzIL9u1gPw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "975075443034-61d72bkr7vq8hverim2pr80cskhq2ecq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

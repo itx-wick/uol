@@ -1,0 +1,45 @@
+diff --git a/node_modules/react-native/.DS_Store b/node_modules/react-native/.DS_Store
+new file mode 100644
+index 0000000..b2a6b3e
+Binary files /dev/null and b/node_modules/react-native/.DS_Store differ
+diff --git a/node_modules/react-native/ReactCommon/yoga/yoga/Yoga.cpp b/node_modules/react-native/ReactCommon/yoga/yoga/Yoga.cpp
+index 9986279..20389d4 100644
+--- a/node_modules/react-native/ReactCommon/yoga/yoga/Yoga.cpp
++++ b/node_modules/react-native/ReactCommon/yoga/yoga/Yoga.cpp
+@@ -2229,7 +2229,7 @@ static float YGDistributeFreeSpaceSecondPass(
+         depth,
+         generationCount);
+     node->setLayoutHadOverflow(
+-        node->getLayout().hadOverflow() |
++        node->getLayout().hadOverflow() ||
+         currentRelativeChild->getLayout().hadOverflow());
+   }
+   return deltaFreeSpace;
+diff --git a/node_modules/react-native/react.gradle b/node_modules/react-native/react.gradle
+index d876b13..4e43083 100644
+--- a/node_modules/react-native/react.gradle
++++ b/node_modules/react-native/react.gradle
+@@ -217,6 +217,23 @@ afterEvaluate {
+                 jsSourceMapsDir.mkdirs()
+             }
+ 
++            doLast {
++                def moveFunc = { resSuffix ->
++                    File originalDir = file("$buildDir/generated/res/react/release/${resSuffix}")
++                    if (originalDir.exists()) {
++                        File destDir = file("$buildDir/../src/main/res/${resSuffix}")
++                        ant.move(file: originalDir, tofile: destDir)
++                    }
++                }
++                moveFunc.curry('drawable-ldpi').call()
++                moveFunc.curry('drawable-mdpi').call()
++                moveFunc.curry('drawable-hdpi').call()
++                moveFunc.curry('drawable-xhdpi').call()
++                moveFunc.curry('drawable-xxhdpi').call()
++                moveFunc.curry('drawable-xxxhdpi').call()
++                moveFunc.curry('raw').call()
++            }
++
+             // Set up inputs and outputs so gradle can cache the result
+             inputs.files fileTree(dir: reactRoot, excludes: inputExcludes)
+             outputs.dir(jsBundleDir)
