@@ -16,6 +16,7 @@ import {postApiCall} from '../../../services/ApiServices';
 import {Commons} from '../../../utils';
 import {logout} from '../../../redux/auth/authSlice';
 import {ScrollView} from 'react-native-gesture-handler';
+import moment from 'moment';
 
 function Tests(props) {
   const dispatch = useDispatch();
@@ -68,6 +69,7 @@ function Tests(props) {
           if (Object.keys(res.Data).length === 0) {
             Commons.snackBar(res.Message, COLORS.green);
           } else {
+            console.log(res.Data);
             dispatch(setTestList(res.Data.Exams));
           }
         } else if (res.Code === 0) {
@@ -138,7 +140,11 @@ function Tests(props) {
               style={Styles.from_date_cont}>
               <AppText children={'From Date'} style={Styles.date_view_title} />
               <AppText
-                children={fromDate ? fromDate : 'Select Date'}
+                children={
+                  fromDate
+                    ? moment(fromDate).format('DD-MM-yyyy')
+                    : 'Select Date'
+                }
                 style={Styles.date_view_text}
               />
             </Pressable>
@@ -150,7 +156,9 @@ function Tests(props) {
               style={Styles.to_date_cont}>
               <AppText children={'To Date'} style={Styles.date_view_title} />
               <AppText
-                children={toDate ? toDate : 'Select Date'}
+                children={
+                  toDate ? moment(toDate).format('DD-MM-yyyy') : 'Select Date'
+                }
                 style={Styles.date_view_text}
               />
             </Pressable>

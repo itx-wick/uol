@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Image,
   Keyboard,
@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Dialog from 'react-native-dialog';
 
 import moment from 'moment';
@@ -22,15 +22,15 @@ import {
   ErrorMessage,
   CheckBox,
 } from '../../../components';
-import { COLORS, END_POINT, IMAGES, ROUTES } from '../../../constants';
-import { setLoader } from '../../../redux/common/commonSlice';
-import { Styles } from '../../../styles';
-import { postApiCall } from '../../../services/ApiServices';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
-import { RFValue } from 'react-native-responsive-fontsize';
-import { validateInput } from '../../../utils/Validation';
-import { Commons } from '../../../utils';
-import { logout } from '../../../redux/auth/authSlice';
+import {COLORS, END_POINT, IMAGES, ROUTES} from '../../../constants';
+import {setLoader} from '../../../redux/common/commonSlice';
+import {Styles} from '../../../styles';
+import {postApiCall} from '../../../services/ApiServices';
+import {FlatList, ScrollView} from 'react-native-gesture-handler';
+import {RFValue} from 'react-native-responsive-fontsize';
+import {validateInput} from '../../../utils/Validation';
+import {Commons} from '../../../utils';
+import {logout} from '../../../redux/auth/authSlice';
 
 function TExamDetails(props) {
   const dispatch = useDispatch();
@@ -158,7 +158,7 @@ function TExamDetails(props) {
 
   const DataNotFound = () => {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{flex: 1}}>
         <Image source={IMAGES.noData} style={Styles.noDataImg2} />
       </View>
     );
@@ -250,15 +250,16 @@ function TExamDetails(props) {
     onUpdate();
   };
 
-  const renderItem = ({ item, index }) => {
+  const renderItem = ({item, index}) => {
+    console.log(JSON.stringify(item, null, 2));
     return (
       <View>
         <View style={Styles.t_exam_detail_student_list_card}>
-          <View style={{ width: '15%' }}>
+          <View style={{width: '15%'}}>
             <>
               {item.ProfilePic && item.ProfilePic !== '' ? (
                 <Image
-                  source={{ uri: item.ProfilePic }}
+                  source={{uri: item.ProfilePic}}
                   style={Styles.studentImage}
                 />
               ) : (
@@ -273,41 +274,31 @@ function TExamDetails(props) {
               )}
             </>
           </View>
-          <View style={{ width: '70%', paddingLeft: RFValue(10) }}>
-            <View style={{ flexDirection: 'row' }}>
+          <View style={{width: '70%', paddingLeft: RFValue(10)}}>
+            <View style={{flexDirection: 'row'}}>
               <AppText
-                children={
+                children={`${
                   item.FirstName != undefined ||
-                    item.FirstName != null ||
-                    item.FirstName != ''
+                  item.FirstName != null ||
+                  item.FirstName != ''
                     ? item.FirstName + ' '
                     : ''
-                }
-                numberOfLines={1}
-                style={{ fontWeight: 'bold' }}
-              />
-              <AppText
-                children={
+                }${
                   item.LastName !== undefined ||
-                    item.LastName !== null ||
-                    item.LastName !== ''
+                  item.LastName !== null ||
+                  item.LastName !== ''
                     ? item.LastName
                     : ''
-                }
-                numberOfLines={1}
-                style={{ fontWeight: 'bold' }}
-              />
-              <AppText
-                children={
+                }${
                   item.LastName === ''
                     ? '- ' + item.RollNo
                     : ' - ' + item.RollNo
-                }
+                }`}
                 numberOfLines={1}
-                style={{ fontWeight: 'bold' }}
+                style={{fontWeight: 'bold'}}
               />
             </View>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <TextInput
                 key={index}
                 name="obtainedMarks"
@@ -318,8 +309,8 @@ function TExamDetails(props) {
                   item.IsAbsent === '1'
                     ? false
                     : user.EditExams == 1
-                      ? true
-                      : false
+                    ? true
+                    : false
                 }
                 value={item.IsAbsent === '1' ? '0' : item.ObtainedMarks}
                 onChangeText={val => onTextChanged(index, val)}
@@ -336,11 +327,16 @@ function TExamDetails(props) {
               />
             </View>
           </View>
-          <View style={{ width: '15%' }}>
+          <View style={{width: '15%'}}>
             <CheckBox
               onPress={() => {
                 {
-                  user.EditExams == 1 && onAbsentCheck(index, item);
+                  user.EditExams == 1 &&
+                    onAbsentCheck(
+                      index,
+                      item,
+                      item.IsAbsent == '0' ? true : false,
+                    );
                 }
               }}
               title={'Absent'}
@@ -357,23 +353,27 @@ function TExamDetails(props) {
 
   const onTextChanged = (index, value) => {
     const fData = [...filteredData];
-    fData[index].ObtainedMarks = value; // <-- "availableStock" is example key for showing way out of this -->
-    fData[index].ExamStatus = value < parseInt(passMarks) ? 'Fail' : 'Pass';
+    fData[index] = {
+      ...fData[index],
+      ObtainedMarks: value,
+      ExamStatus: value < parseInt(passMarks) || value === '' ? 'Fail' : 'Pass',
+    };
     setFilteredData(fData);
     setData(fData);
   };
 
-  const onAbsentCheck = (index, value) => {
+  const onAbsentCheck = (index, value, check) => {
     const fData = [...filteredData];
-    fData[index].IsAbsent = value.IsAbsent == '0' ? '1' : '0';
-    fData[index].ObtainedMarks =
-      value.IsAbsent == '1' ? '0' : value.ObtainedMarks;
-    fData[index].ExamStatus =
-      value.IsAbsent == '1'
+    fData[index] = {
+      ...fData[index],
+      IsAbsent: check ? '1' : '0',
+      ObtainedMarks: check ? '0' : value.ObtainedMarks,
+      ExamStatus: check
         ? 'Absent'
         : parseInt(fData[index].ObtainedMarks) < passMarks
-          ? 'Fail'
-          : 'Pass';
+        ? 'Fail'
+        : 'Pass',
+    };
     setFilteredData(fData);
     setData(fData);
   };

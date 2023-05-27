@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import {View, TextInput, Keyboard} from 'react-native';
+import {View, TextInput, Keyboard, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   Screen,
@@ -32,6 +32,10 @@ function ChangePassword(props) {
   const [newPwdErrorV, setNewPwdErrorV] = useState(false);
   const [confirmPwdErrorV, setConfirmPwdErrorV] = useState(false);
 
+  React.useEffect(() => {
+    dispatch(setLoader(false));
+  }, []);
+
   const onNewPwdChange = data => {
     setNewPwd(data);
     setNewPwdErr('');
@@ -40,6 +44,15 @@ function ChangePassword(props) {
 
   const onConfirmPwdChange = data => {
     setConfirmPwd(data);
+    setConfirmPwdErr('');
+    setConfirmPwdErrorV(false);
+  };
+
+  const clearFields = () => {
+    setNewPwd('');
+    setNewPwdErr('');
+    setNewPwdErrorV(false);
+    setConfirmPwd('');
     setConfirmPwdErr('');
     setConfirmPwdErrorV(false);
   };
@@ -65,7 +78,7 @@ function ChangePassword(props) {
       );
       return;
     }
-    dispatch(setLoader(true));
+    // dispatch(setLoader(true));
     var entry = {};
     let student = [];
     entry = {
@@ -85,35 +98,39 @@ function ChangePassword(props) {
             Type: userType,
             Password: confirmPwd,
           };
+    console.log('Hitttt');
     let endPoint =
       userType === 'T' ? END_POINT.TC_PASSWORD : END_POINT.UC_PASSWORD;
-    postApiCall(endPoint, data)
-      .then(res => {
-        if (res.Code === 2) {
-          Commons.snackBar(res.Message, COLORS.danger);
-          dispatch(logout());
-          Commons.reset(props.navigation, ROUTES.LOGIN);
-        } else if (res.Code === 1) {
-          setNewPwd('');
-          setConfirmPwd('');
-          if (userType === 'T') {
-            if (Object.keys(res.Data).length === 0) {
-              Commons.snackBar(res.Message, COLORS.green);
-            }
-          } else {
-            if (Object.keys(res.Data).length !== 0) {
-              Commons.snackBar('Success', COLORS.green);
-            }
-          }
-        } else if (res.Code === 0) {
-          Commons.snackBar(res.Message, COLORS.primary);
-        }
-        dispatch(setLoader(false));
-      })
-      .catch(err => {
-        dispatch(setLoader(false));
-        console.log(err);
-      });
+    console.log('Password Data', data, endPoint);
+    // postApiCall(endPoint, data)
+    //   .then(res => {
+    //     console.log('Change Password', res);
+    //     if (res.Code === 2) {
+    //       Commons.snackBar(res.Message, COLORS.danger);
+    //       dispatch(logout());
+    //       Commons.reset(props.navigation, ROUTES.LOGIN);
+    //     } else if (res.Code === 1) {
+    //       if (userType === 'T') {
+    //         if (Object.keys(res.Data).length === 0) {
+    //           clearFields();
+    //           Commons.snackBar(res.Message, COLORS.green);
+    //         }
+    //       } else {
+    //         if (Object.keys(res.Data).length !== 0) {
+    //           clearFields();
+    //           Commons.snackBar('Success', COLORS.green);
+    //         }
+    //       }
+    //     } else if (res.Code === 0) {
+    //       Commons.snackBar(res.Message, COLORS.primary);
+    //     }
+    //     dispatch(setLoader(false));
+    //   })
+    //   .catch(err => {
+    //     dispatch(setLoader(false));
+    //     alert(err);
+    //     console.log('Err', err);
+    //   });
   };
 
   const hideKeyboard = () => {

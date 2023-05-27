@@ -53,6 +53,7 @@ function THome(props) {
           if (Object.keys(res.Data).length === 0) {
             Commons.snackBar(res.Message, COLORS.green);
           } else {
+            console.log('Res', res.Data);
             dispatch(setHomeDashStat(res.Data));
           }
         } else if (res.Code === 0) {

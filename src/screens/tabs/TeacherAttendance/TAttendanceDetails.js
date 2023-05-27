@@ -307,7 +307,10 @@ function TAttendanceDetails(props) {
 
   const onAttendanceCheck = (index, value) => {
     const fData = [...filteredData];
-    fData[index].Status = value;
+    fData[index] = {
+      ...fData[index],
+      Status: value,
+    };
     setFilteredData(fData);
     setData(fData);
   };

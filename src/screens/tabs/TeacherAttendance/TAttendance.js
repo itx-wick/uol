@@ -195,7 +195,11 @@ function TAttendance(props) {
               style={Styles.from_date_cont}>
               <AppText children={'From Date'} style={Styles.date_view_title} />
               <AppText
-                children={fromDate ? fromDate : 'Select Date'}
+                children={
+                  fromDate
+                    ? moment(fromDate).format('DD-MM-yyyy')
+                    : 'Select Date'
+                }
                 style={Styles.date_view_text}
               />
             </Pressable>
@@ -207,7 +211,9 @@ function TAttendance(props) {
               style={Styles.to_date_cont}>
               <AppText children={'To Date'} style={Styles.date_view_title} />
               <AppText
-                children={toDate ? toDate : 'Select Date'}
+                children={
+                  toDate ? moment(toDate).format('DD-MM-yyyy') : 'Select Date'
+                }
                 style={Styles.date_view_text}
               />
             </Pressable>

@@ -27,6 +27,7 @@ const MultiSelectDD = ({
 
   const onSelectedItem = val => {
     onSelect(val);
+    setShowOption(false);
   };
 
   let selectedVal =

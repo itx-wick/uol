@@ -179,6 +179,11 @@ function TAttendancCreate(props) {
         setData(filterData);
         setFilteredData(filterData);
       }
+      // handleSelectAllStudents('1');
+      // handleSelectAllStudents('2');
+      // handleSelectAllStudents('3');
+      // handleSelectAllStudents('4');
+      // handleSelectAllStudents('1');
       setBatchErr('');
       setBatchErrorV(false);
     };
@@ -472,7 +477,7 @@ function TAttendancCreate(props) {
                 }}>
                 <CheckBox
                   onPress={() => {
-                    onAttendanceCheck(index, '1');
+                    onAttendanceCheck(index, 'Status', '1');
                   }}
                   title={'Present'}
                   isChecked={item.Status == '1' ? true : false}
@@ -489,7 +494,7 @@ function TAttendancCreate(props) {
                 }}>
                 <CheckBox
                   onPress={() => {
-                    onAttendanceCheck(index, '2');
+                    onAttendanceCheck(index, 'Status', '2');
                   }}
                   title={'Absent'}
                   isChecked={item.Status == '2' ? true : false}
@@ -506,7 +511,7 @@ function TAttendancCreate(props) {
                 }}>
                 <CheckBox
                   onPress={() => {
-                    onAttendanceCheck(index, '3');
+                    onAttendanceCheck(index, 'Status', '3');
                   }}
                   title={'Leave'}
                   isChecked={item.Status == '3' ? true : false}
@@ -523,7 +528,7 @@ function TAttendancCreate(props) {
                 }}>
                 <CheckBox
                   onPress={() => {
-                    onAttendanceCheck(index, '4');
+                    onAttendanceCheck(index, 'Status', '4');
                   }}
                   title={'Late'}
                   isChecked={item.Status == '4' ? true : false}
@@ -539,11 +544,15 @@ function TAttendancCreate(props) {
     );
   };
 
-  const onAttendanceCheck = (index, value) => {
+  const onAttendanceCheck = (index, key, value) => {
     const fData = [...filteredData];
-    fData[index].Status = value;
+    fData[index] = {
+      ...fData[index],
+      Status: value,
+    };
     setFilteredData(fData);
     setData(fData);
+    console.log(fData[index], value);
   };
 
   const countStudents = status => {

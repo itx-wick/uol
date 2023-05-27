@@ -399,7 +399,7 @@ PODS:
     - glog
   - react-native-document-picker (8.2.1):
     - React-Core
-  - react-native-image-picker (5.3.1):
+  - react-native-image-picker (5.4.0):
     - React-Core
   - react-native-image-resizer (1.4.5):
     - React-Core
@@ -496,15 +496,6 @@ PODS:
     - RNFBApp
   - RNGestureHandler (2.8.0):
     - React-Core
-  - RNImageCropPicker (0.37.3):
-    - React-Core
-    - React-RCTImage
-    - RNImageCropPicker/QBImagePickerController (= 0.37.3)
-    - TOCropViewController
-  - RNImageCropPicker/QBImagePickerController (0.37.3):
-    - React-Core
-    - React-RCTImage
-    - TOCropViewController
   - RNPermissions (3.8.0):
     - React-Core
   - RNReanimated (2.17.0):
@@ -544,7 +535,6 @@ PODS:
   - RNVectorIcons (9.2.0):
     - React-Core
   - SocketRocket (0.6.0)
-  - TOCropViewController (2.6.1)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -621,7 +611,6 @@ DEPENDENCIES:
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -658,7 +647,6 @@ SPEC REPOS:
     - OpenSSL-Universal
     - PromisesObjC
     - SocketRocket
-    - TOCropViewController
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -750,8 +738,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/messaging"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
-  RNImageCropPicker:
-    :path: "../node_modules/react-native-image-crop-picker"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
   RNReanimated:
@@ -813,7 +799,7 @@ SPEC CHECKSUMS:
   React-jsinspector: c5989c77cb89ae6a69561095a61cce56a44ae8e8
   React-logger: a0833912d93b36b791b7a521672d8ee89107aff1
   react-native-document-picker: 69ca2094d8780cfc1e7e613894d15290fdc54bba
-  react-native-image-picker: ec9b713e248760bfa0f879f0715391de4651a7cb
+  react-native-image-picker: 709d04e7df67bd3a90f376c3eedb2e8b8334dd04
   react-native-image-resizer: d9fb629a867335bdc13230ac2a58702bb8c8828f
   react-native-pager-view: 0ccb8bf60e2ebd38b1f3669fa3650ecce81db2df
   react-native-safe-area-context: b8979f5eda6ed5903d4dbc885be3846ea3daa753
@@ -837,7 +823,6 @@ SPEC CHECKSUMS:
   RNFBApp: 0d8bf86673bbad0524d1ceac3944d71ccf48a0e4
   RNFBMessaging: 4b8cb1215465bacca36d0fcfc2f51e7e2aa1bc91
   RNGestureHandler: 62232ba8f562f7dea5ba1b3383494eb5bf97a4d3
-  RNImageCropPicker: 44e2807bc410741f35d4c45b6586aedfe3da39d2
   RNPermissions: 215c54462104b3925b412b0fb3c9c497b21c358b
   RNReanimated: 1f117be601c59177816351a965bc57320b766c15
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
@@ -845,7 +830,6 @@ SPEC CHECKSUMS:
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
-  TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   Yoga: 99652481fcd320aefa4a7ef90095b95acd181952
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

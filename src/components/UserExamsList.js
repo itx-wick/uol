@@ -28,7 +28,7 @@ const UserExamsList = props => {
       APIAccessToken: user.APIAccessToken,
       Type: userType,
       SubjectID: exam.SubjectID,
-      StartDate: moment(Date.now()).subtract(1, 'months').format('yyyy-MM-DD'),
+      StartDate: moment(Date.now()).subtract(3, 'months').format('yyyy-MM-DD'),
       EndDate: moment(Date.now()).format('yyyy-MM-DD'),
     };
     console.log('Data', data);

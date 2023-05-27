@@ -5,9 +5,9 @@ import axios from 'axios';
 let BASE_URL_SERVER;
 export const postApiCall = async (endPoint, data) => {
   //DEV
-  BASE_URL_SERVER = 'https://devucmd.uol.edu.pk/api/app.php/';
+  // BASE_URL_SERVER = 'https://devucmd.uol.edu.pk/api/app.php/';
   //LIVE
-  // BASE_URL_SERVER = 'https://ucmdportal.uol.edu.pk/api/app.php/';
+  BASE_URL_SERVER = 'https://ucmdportal.uol.edu.pk/api/app.php/';
   console.log(BASE_URL_SERVER + `${endPoint}`);
   return new Promise((resolve, reject) => {
     let headers = {

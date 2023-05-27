@@ -1,4 +1,4 @@
-import {Pressable, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 
 import AppText from './AppText';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,7 +12,7 @@ const CheckBox = props => {
     : 'checkbox-blank-circle-outline';
 
   return (
-    <Pressable onPress={props.onPress}>
+    <TouchableOpacity onPress={props.onPress}>
       <View style={[Styles.checkBoxContainer, props.viewDirection]}>
         <MaterialCommunityIcon
           name={iconName}
@@ -29,7 +29,7 @@ const CheckBox = props => {
           ]}
         />
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
