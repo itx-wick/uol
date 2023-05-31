@@ -5,7 +5,6 @@ import App from './App';
 import {name as appName} from './app.json';
 import messaging from '@react-native-firebase/messaging';
 
-messaging().registerDeviceForRemoteMessages();
 messaging().setBackgroundMessageHandler(async remoteMessage => {});
 
 function HeadlessCheck({isHeadless}) {

@@ -15,6 +15,7 @@
     "release:build:win": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/build/intermediates/res/merged/release/ && rd /s /q android/app/src/main/res/drawable-* && rd /s /q android/app/src/main/res/raw/* && cd android && gradlew assembleRelease && cd ..",
     "release:build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cd android && ./gradlew assembleRelease",
     "debug:build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug",
+    "bundle:build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cd android && ./gradlew bundleRelease",
     "install:pods": "cd ios && pod install && cd ..",
     "ios": "npx react-native run-ios --simulator=\"iPhone 14 Pro Max\"",
     "start": "npx react-native start",
